@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SchulBuchWebApp.Models.BookModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GegStdKurz)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Klasse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kurztitel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Verlag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LehrKurz)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GegStdKurz)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Klasse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kurztitel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Verlag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Preis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LehrKurz)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

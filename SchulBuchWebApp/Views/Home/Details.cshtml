@@ -1,0 +1,67 @@
+﻿@model SchulBuchWebApp.Models.BookModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div>
+
+    <h4>Buch:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GegStdKurz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GegStdKurz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Klasse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Klasse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kurztitel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kurztitel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Verlag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Verlag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Preis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preis)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Confirm", "Confirm", new { ID = Model.ID }, null) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
