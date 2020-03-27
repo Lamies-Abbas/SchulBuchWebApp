@@ -14,21 +14,24 @@ namespace SchulBuchWebApp.BusinessLogic
         {
             string sql = "SELECT ID, GegStdKurz, Klasse, Kurztitel, Verlag, Preis, LehrKurz " +
                         "FROM Bestellungen_Werke_Webvorlage " +
-                        "WHERE LehrKurz='" + userName + "';";
+                        "WHERE LehrKurz = '" + userName.ToString() + "';";
+
 
             return MDBDataAccess.LoadData<BookModel>(sql);
 
         }
-        public static List<DeleteModel> DeleteModels(int id)
+    public static int DeleteBook(int id)
         {
-            string sql = @"DELETE * FROM Bestellungen_Werke_Webtabelle WHERE ID = " + id.ToString() + ";";
-            return MDBDataAccess.LoadData<DeleteModel>(sql);
+            string sql = "DELETE FROM Bestellungen_Werke_Webtabelle " +
+                         "WHERE ID=" + id + ";";
+            return MDBDataAccess.DeleteData(sql);
         }
+
         public static List<CartItem> GetAll(string userName)
         {
             string sql = "SELECT ID, GegStdKurz, Klasse, Kurztitel, Verlag, Preis, LehrKurz " +
                 "FROM Bestellungen_Werke_Webtabelle " +
-                "WHERE LehrKurz ='" + userName + "';";
+                 "WHERE LehrKurz = '" + userName.ToString() + "';";
             return MDBDataAccess.LoadData<CartItem>(sql);
         }
 

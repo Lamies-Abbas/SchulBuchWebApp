@@ -24,6 +24,13 @@ namespace SchulBuchWebApp.DataAccess
                 return connection.Query<T>(sql).ToList();
             }
         }
+        internal static int DeleteData(string sql)
+        {
+            using (IDbConnection cnn = new OleDbConnection(GetConnectionString()))
+            {
+                return cnn.Execute(sql);
+            }
+        }
 
     }
 }

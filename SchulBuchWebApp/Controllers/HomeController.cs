@@ -3,6 +3,7 @@ using SchulBuchWebApp.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using SchulBuchWebApp.CopyItem;
+using SchulBuchWebApp.DataAccess;
 
 namespace SchulBuchWebApp.Controllers
 {
@@ -55,19 +56,17 @@ namespace SchulBuchWebApp.Controllers
             return RedirectToAction("Cart");
         }
 
-        public ActionResult Delete(int ID)
+        public ActionResult Delete(int id)
         {
-            List<DeleteModel> deleteModels = new List<DeleteModel>();
-            deleteModels = BookProcessor.DeleteModels(ID);
-            DeleteModel delete = new DeleteModel();
-            delete = deleteModels.Find(b => b.ID == ID);
+            int booksDeleted = BookProcessor.DeleteBook(id);
             return RedirectToAction("Cart");
         }
 
         public ActionResult Cart()
         {
+            string userName = User.Identity.Name.Substring(0, User.Identity.Name.IndexOf("@")).ToLower();
             List<CartItem> cart = new List<CartItem>();
-            var items = BookProcessor.GetAll("lamies.abbas");
+            var items = BookProcessor.GetAll(userName);
 
             foreach (CartItem row in items)
             {
@@ -85,11 +84,12 @@ namespace SchulBuchWebApp.Controllers
                     return View(cart);
 
          }
-
+        [Authorize]
         public ActionResult DisplayBook()
         {
+            string userName = User.Identity.Name.Substring(0, User.Identity.Name.IndexOf("@")).ToLower();
             List<BookModel> books = new List<BookModel>();
-            var data = BookProcessor.GetData("lamies.abbas");
+            var data = BookProcessor.GetData(userName);
 
             foreach (BookModel row in data)
             {
@@ -104,14 +104,14 @@ namespace SchulBuchWebApp.Controllers
                     LehrKurz = row.LehrKurz
                 });
             }
-
             return View(books);
         }
 
         public ActionResult Details(int ID)
         {
+            string userName = User.Identity.Name.Substring(0, User.Identity.Name.IndexOf("@")).ToLower();
             List<BookModel> books = new List<BookModel>();
-            books = BookProcessor.GetData("lamies.abbas");
+            books = BookProcessor.GetData(userName);
 
             BookModel specialBook = new BookModel();
             specialBook = books.Find(b => b.ID == ID);
